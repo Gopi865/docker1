@@ -9,7 +9,7 @@ pipeline{
 			     sh "docker build . -t gopikrishna5185/pipeline:v3:${DOCKER_TAG}"
 				 }
 			}
-            stage(DockerHub Push'){
+            stage('DockerHub Push'){
 			steps{
                 withCredentials([string(credentialsId: 'gopikrishna5185', variable: 'dockerhubpwd')]) {
  		    	    sh "docker login -u gopikrishna5185 -p ${dockerhubpwd}"
