@@ -10,9 +10,11 @@ pipeline{
 				 }
 			}
             stage(DockerHub Push'){
-            withCredentials([string(credentialsId: 'gopikrishna5185', variable: 'dockerhubpwd')]) {
- 		    	sh "docker login -u gopikrishna5185 -p ${dockerhubpwd}"
-				sh "docker push gopikrishna5185/pipeline:v3 ${DOCKER_TAG}"
+			steps{
+                withCredentials([string(credentialsId: 'gopikrishna5185', variable: 'dockerhubpwd')]) {
+ 		    	    sh "docker login -u gopikrishna5185 -p ${dockerhubpwd}"
+				    sh "docker push gopikrishna5185/pipeline:v3 ${DOCKER_TAG}"
+				}	
 			}
 		}	
     }
